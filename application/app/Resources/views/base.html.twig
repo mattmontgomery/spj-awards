@@ -31,6 +31,19 @@
                             </a>
                         </li>
                         <li>
+                            <a href="{{ path('utah_spj_awards_entries_user') }}">Entries</a>
+                        </li>
+                        {% if is_granted('ROLE_JUDGE') %}
+                            <li>
+                                <a href="{{ path('awards_section_list') }}">Sections</a>
+                            </li>
+                        {% endif %}
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li>
+                                <a href="{{ path('awards_admin_index') }}">Admin</a>
+                            </li>
+                        {% endif %}
+                        <li>
                                 <a href="{{ path('fos_user_security_logout') }}">
                                     {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
                                 </a>

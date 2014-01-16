@@ -22,8 +22,9 @@ class User extends BaseUser
      */
     protected $id;
 
+
     /**
-     * @ORM\OneToMany(targetEntity="Entry", mappedBy="User")
+     * @ORM\OneToMany(targetEntity="Entry", mappedBy="user")
      * @ORM\JoinColumn(referencedColumnName="id")
      */
     protected $entries;
@@ -37,4 +38,37 @@ class User extends BaseUser
     {
         return $this->id;
     }
+
+    /**
+     * @param mixed $entries
+     */
+    public function setEntries($entries)
+    {
+        $this->entries = $entries;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEntries()
+    {
+        return $this->entries;
+    }
+    /**
+     * @return mixed
+     */
+    public function getPaidEntries()
+    {
+        $entries = ($this->entries->filter(function($obj) { if($obj->getPaid()) { return $obj; } }));
+        return $entries;
+    }
+    /**
+     * @return mixed
+     */
+    public function getUnpaidEntries()
+    {
+        $entries = ($this->entries->filter(function($obj) { if(!$obj->getPaid()) { return $obj; } }));
+        return $entries;
+    }
+
 }

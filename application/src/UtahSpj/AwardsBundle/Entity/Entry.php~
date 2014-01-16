@@ -3,6 +3,7 @@
 namespace UtahSpj\AwardsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Entry
@@ -38,7 +39,7 @@ class Entry
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
 
@@ -73,22 +74,28 @@ class Entry
     /**
      * @var boolean
      *
-     * @ORM\Column(name="paid", type="boolean")
+     * @ORM\Column(name="paid", type="boolean", options="{'default':false}")
      */
     private $paid;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="paid_date", type="datetimetz")
+     * @ORM\Column(name="paid_date", type="datetimetz", nullable=true)
      */
     private $paidDate;
 
     /**
-     * @ORM\OneToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumn(referencedColumnName="id")
      */
     private $user;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Section", mappedBy="entries")
+     * @ORM\JoinColumn(referencedColumnName="id")
+     */
+    private $section;
 
     /**
      * Get id
@@ -283,4 +290,69 @@ class Entry
     {
         return $this->paidDate;
     }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     * @return Entry
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string 
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \UtahSpj\AwardsBundle\Entity\User $user
+     * @return Entry
+     */
+    public function setUser(\UtahSpj\AwardsBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \UtahSpj\AwardsBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $section
+     */
+    public function setSection($section)
+    {
+        $this->section = $section;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSection()
+    {
+        return $this->sections;
+    }
+
+
+
 }

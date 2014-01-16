@@ -1,0 +1,9 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}UtahSpjAwardsBundle:Admin:index{% endblock %}
+
+{% block body %}
+<h1>Welcome to the Admin:index page</h1>
+    <h3><a href="{{ path('awards_admin_users') }}">View users</a></h3>
+    <h3><a href="{{ path('awards_section_create') }}">Create a section</a></h3>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}UtahSpjAwardsBundle:Section:list{% endblock %}
+
+{% block body %}
+    <h2>Sections</h2>
+    {% if sections %}
+        <table class="table">
+            <tr><th>ID</th><th>Title</th><th>Submissions</th><th></th><th></th><th></th></tr>
+        {% for section in sections %}
+            <tr>
+                <td>{{ section.id }}</td>
+                <td>{{ section.title }}</td>
+                <td>{{ section.entries.count }}</td>
+                <td><a href="{{ path('awards_section_edit',{id:section.id}) }}">Edit</a></td>
+                <td><a href="{{ path('awards_section_view',{id:section.id}) }}">View</a></td>
+                <td><a href="{{ path('awards_section_entries',{id:section.id}) }}">Entries</a></td>
+            </tr>
+        {% endfor %}
+        </table>
+    {% endif %}
+{% endblock %}

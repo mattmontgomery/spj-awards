@@ -8,11 +8,11 @@
 
 * Style register page (if email already used)
 * Style forgot password page, ensure works
+* Email users link to reset password on request
 
 2: Site template
 
-- Navigation
-
+* Impl: Twitter bootstrap styles
 * Impl: login bar
 * Impl: Login & Registration access
 
@@ -20,7 +20,7 @@
 
 5: Account home
 * Impl: List entries
-* Group by order status
+* Impl: Group by order status
 * Pay for entries and checkout workflow
 
 2: Entry edit and submission
@@ -28,9 +28,9 @@
 * Impl: Create entry
 * Impl: Edit entry
 * Impl: View entries in table
-* Create/edit entry into specific section
+* Impl: Create/edit entry into specific section
+* Impl: View a list of entries grouped by payment/order status
 * Create/edit entry with more specific details relayed by SPJ reps
-* View entries grouped by payment/order status
 * View entry
 
 5: Payment & checkout 
@@ -40,13 +40,15 @@
 
 3: Judges
 
-* View sections
+* Impl: View sections
 * View entries in sections by order status
 
 3: Administration
 
-* Approve judges
-* View entries in sections by order status
+* Impl: View users and entries
+* Ensure users cannot access the entries of other users, but administrators and judges can
+* Promote users to judges
+* Create users
 * View entries in all sections by order status
 
 

@@ -3,25 +3,32 @@
 namespace UtahSpj\AwardsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\BrowserKit\Response;
 use Symfony\Component\HttpFoundation\Request;
 use \DateTime;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use UtahSpj\AwardsBundle\Entity\Entry;
 
 class EntryController extends Controller
 {
-    public function userEntriesAction(Request $request)
+    public function userEntriesAction($id = null, Request $request)
     {
         $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
+        if($id !== null && $id !== $user->getId()) {
+            if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+                throw new AccessDeniedException();
+            }
+            if(null === $user = $em->find('UtahSpjAwardsBundle:User',$id)) {
+                throw new NotFoundHttpException();
+            }
+        }
         $repo = $em->getRepository('UtahSpjAwardsBundle:Entry');
-        $entries = $repo->findBy(['user'=>$user]);
+        $unpaid_entries = $repo->findBy(['user'=>$user, 'paid'=>false]);
+        $paid_entries = $repo->findBy(['user'=>$user, 'paid'=>true]);
         return $this->render(
             'UtahSpjAwardsBundle:Entry:user-entries.html.twig',
-            array('entries'=>$entries)
+            ['unpaid_entries'=>$unpaid_entries,'paid_entries'=>$paid_entries,'user'=>$user]
         );
     }
     public function viewAction($id)
@@ -48,12 +55,14 @@ class EntryController extends Controller
             ->add('title', 'text')
             ->add('url', 'url')
             ->add('email', 'email')
-            ->add('description', 'textarea')
+            ->add('description', 'textarea',['required'=>false])
+            ->add('sections', 'entity', ['class'=>'UtahSpjAwardsBundle:Section', 'property'=>'title', 'multiple'=>false])
             ->add('save', 'submit', ['attr'=>['class'=>'btn btn-default']])
             ->getForm();
         $form->handleRequest($request);
         if($form->isValid()) {
             $entry->setUpdated(new DateTime());
+
             $em->persist($entry);
             $em->flush();
             return $this->redirect($this->generateUrl('utah_spj_awards_entry_view',['id'=>$entry->getId()]));

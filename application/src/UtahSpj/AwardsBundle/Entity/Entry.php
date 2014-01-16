@@ -92,6 +92,12 @@ class Entry
     private $user;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Section", inversedBy="entries")
+     * @ORM\JoinColumn(referencedColumnName="id")
+     */
+    private $sections;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -329,5 +335,54 @@ class Entry
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * @param mixed $sections
+     */
+    public function setSections($sections)
+    {
+        $this->sections = $sections;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSections()
+    {
+        return $this->sections;
+    }
+
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->section = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add section
+     *
+     * @param \UtahSpj\AwardsBundle\Entity\Section $section
+     * @return Entry
+     */
+    public function addSection(\UtahSpj\AwardsBundle\Entity\Section $section)
+    {
+        $this->section[] = $section;
+
+        return $this;
+    }
+
+    /**
+     * Remove section
+     *
+     * @param \UtahSpj\AwardsBundle\Entity\Section $section
+     */
+    public function removeSection(\UtahSpj\AwardsBundle\Entity\Section $section)
+    {
+        $this->section->removeElement($section);
     }
 }

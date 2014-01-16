@@ -2,6 +2,12 @@ utah_spj_awards_homepage:
     pattern:  /
     defaults: { _controller: UtahSpjAwardsBundle:Default:index }
 
+utah_spj_awards_entries_userid:
+    pattern: /profile/{id}/entries
+    defaults: { _controller: UtahSpjAwardsBundle:Entry:userEntries }
+    requirements:
+        id: \d+
+
 utah_spj_awards_entries_user:
     pattern: /profile/entries
     defaults: { _controller: UtahSpjAwardsBundle:Entry:userEntries }
@@ -21,3 +27,33 @@ utah_spj_awards_entry_edit:
     defaults: { _controller: UtahSpjAwardsBundle:Entry:edit }
     requirements:
         id: \d+
+
+awards_section_list:
+    pattern: /sections
+    defaults: { _controller: UtahSpjAwardsBundle:Section:list }
+
+awards_section_edit:
+    pattern: /sections/{id}/edit
+    defaults: { _controller: UtahSpjAwardsBundle:Section:edit }
+
+awards_section_view:
+    pattern: /sections/{id}
+    defaults: { _controller: UtahSpjAwardsBundle:Section:view }
+    requirements:
+        id: \d+
+
+awards_section_create:
+    pattern: /sections/create
+    defaults: { _controller: UtahSpjAwardsBundle:Section:create }
+
+awards_section_entries:
+    pattern: /sections/{id}/entries
+    defaults: { _controller: UtahSpjAwardsBundle:Section:entries }
+
+awards_admin_index:
+    pattern: /admin
+    defaults: { _controller: UtahSpjAwardsBundle:Admin:index }
+
+awards_admin_users:
+    pattern: /admin/users
+    defaults: { _controller: UtahSpjAwardsBundle:Admin:users }

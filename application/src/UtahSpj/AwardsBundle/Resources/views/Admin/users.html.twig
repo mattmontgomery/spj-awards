@@ -1,0 +1,29 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}UtahSpjAwardsBundle:Admin:users{% endblock %}
+
+{% block body %}
+<h1>Welcome to the Admin:users page</h1>
+    {% if users %}
+        <table class="table">
+            <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Unpaid Entries</th>
+                <th>Paid Entries</th>
+                <th></th>
+                <th></th>
+            </tr>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.getUnpaidEntries().count }}</td>
+                    <td>{{ user.getPaidEntries().count }}</td>
+                    <td>Edit</td>
+                    <td><a href="{{ path('utah_spj_awards_entries_userid',{id:user.id}) }}">View</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+{% endblock %}
