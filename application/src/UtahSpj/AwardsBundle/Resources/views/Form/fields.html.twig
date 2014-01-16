@@ -1,0 +1,8 @@
+{% block form_row %}
+    <div class="form-group">
+        {{ form_label(form) }}
+        {{ form_errors(form) }}
+        {{ form_widget(form, {'attr': {'class': 'form-control', 'placeholder': form.vars.label | humanize }}) }}
+    </div>
+    &nbsp;
+{% endblock form_row %}

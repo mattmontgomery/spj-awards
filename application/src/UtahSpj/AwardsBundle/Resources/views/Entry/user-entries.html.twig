@@ -1,0 +1,26 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}UtahSpjAwardsBundle:Entry:view{% endblock %}
+
+{% block body %}
+    <h2>Your entries</h2>
+    <div>
+        <p><a href="{{ path('utah_spj_awards_entry_create') }}" class="btn btn-primary">Create a new entry</a></p>
+    </div>
+    {% if entries %}
+        <table class="table">
+            <tr><th>Title</th><th>URL</th><th>Paid</th><th>Submitted</th><th></th></tr>
+            {% for entry in entries %}
+                <tr>
+                    <td>{{ entry.title }}</td>
+                    <td>{{ entry.url }}</td>
+                    <td>{{ entry.paid ? 'Y' : 'No' }}</td>
+                    <td>{{ entry.submitted|date("Y-m-d H:i") }}</td>
+                    <td><a href="{{ path('utah_spj_awards_entry_edit',{id:entry.id}) }}">Edit</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <h2>No entries submitted</h2>
+    {% endif %}
+{% endblock %}

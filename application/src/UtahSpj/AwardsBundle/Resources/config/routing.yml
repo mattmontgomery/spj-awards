@@ -1,0 +1,23 @@
+utah_spj_awards_homepage:
+    pattern:  /
+    defaults: { _controller: UtahSpjAwardsBundle:Default:index }
+
+utah_spj_awards_entries_user:
+    pattern: /profile/entries
+    defaults: { _controller: UtahSpjAwardsBundle:Entry:userEntries }
+
+utah_spj_awards_entry_create:
+    pattern: /entry/create
+    defaults: { _controller: UtahSpjAwardsBundle:Entry:create }
+
+utah_spj_awards_entry_view:
+    pattern: /entry/{id}
+    defaults: { _controller: UtahSpjAwardsBundle:Entry:view }
+    requirements:
+        id: \d+
+
+utah_spj_awards_entry_edit:
+    pattern: /entry/{id}/edit
+    defaults: { _controller: UtahSpjAwardsBundle:Entry:edit }
+    requirements:
+        id: \d+

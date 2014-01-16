@@ -1,0 +1,13 @@
+{% extends '::base.html.twig' %}
+{% block fos_user_content %}
+    <form action="{{ path('fos_user_registration_register') }}" method="POST" class="fos_user_registration_register">
+        <h1>Register</h1>
+        {%  form_theme form 'UtahSpjAwardsBundle:Form:fields-user.html.twig' %}
+        <div class="form-inline">
+            {{ form_widget(form, {'attr':{'style':'display: inline'}}) }}
+            <div class="form-group">
+                <input type="submit" value="Register" class="btn btn-default"/>
+            </div>
+        </div>
+    </form>
+{% endblock fos_user_content %}

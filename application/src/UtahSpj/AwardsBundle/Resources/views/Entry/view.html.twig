@@ -1,0 +1,8 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}UtahSpjAwardsBundle:Entry:view{% endblock %}
+
+{% block body %}
+<h2>View entry <small><a href="{{ path('utah_spj_awards_entry_edit',{id:entry.id}) }}">Edit</a></small></h2>
+{{ dump(entry) }}
+{% endblock %}

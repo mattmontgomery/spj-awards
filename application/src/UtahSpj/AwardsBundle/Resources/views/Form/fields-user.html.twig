@@ -1,0 +1,8 @@
+{% block form_row %}
+    <div class="form-group">
+        {{ form_label(form,form.vars.label | trans({'%label%': form.vars.label}, 'FOSUserBundle'),{ 'label_attr': {'class': 'sr-only'} }) }}
+        {{ form_errors(form) }}
+        {{ form_widget(form, {'attr': {'class': 'form-control', 'placeholder': form.vars.label | trans({'%label%': form.vars.label}, 'FOSUserBundle') }}) }}
+    </div>
+    &nbsp;
+{% endblock form_row %}
