@@ -1,10 +1,10 @@
 3: Login & Registration
 
-* Implemented: Register
--- Register from homepage
-
-* Implemented: Login
--- Login bar
+* Impl: Register
+* Impl: Register from homepage
+* Impl: Login
+* Impl: Login from navigation bar
+* Don't show register on homepage if logged in
 
 * Style register page (if email already used)
 * Style forgot password page, ensure works
@@ -13,25 +13,42 @@
 
 - Navigation
 
-* Implemented: login bar
-- Login & Registration access
+* Impl: login bar
+* Impl: Login & Registration access
 
 3: Static pages
 
 5: Account home
-- List entries
--- Group by order status
-- Pay for entries and checkout workflow
+* Impl: List entries
+* Group by order status
+* Pay for entries and checkout workflow
 
 2: Entry edit and submission
 
-* Create entry
-* Edit entry
+* Impl: Create entry
+* Impl: Edit entry
+* Impl: View entries in table
+* Create/edit entry into specific section
+* Create/edit entry with more specific details relayed by SPJ reps
+* View entries grouped by payment/order status
 * View entry
 
 5: Payment & checkout 
-- 
+
+* Pay for a group of entries at listed rate
+* Pay with PayPal
+
+3: Judges
+
+* View sections
+* View entries in sections by order status
+
+3: Administration
+
+* Approve judges
+* View entries in sections by order status
+* View entries in all sections by order status
 
 
-Hours spent on project
-Wed. Jan 15, 2014 [5] ---- 17:00-20:30 (3.5); 21:00-22:30 (1.5)
+Hours spent on project [for time-tracking purposes, not for billing etc.]
+Wed. Jan 15, 2014 [5.25] ---- 17:00-20:30 (3.5); 21:00-22:45 (1.75)
